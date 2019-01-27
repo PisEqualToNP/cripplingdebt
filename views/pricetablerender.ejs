@@ -1,0 +1,39 @@
+<% include pricetable.ejs %>
+<div class="container">
+    <% if (typeof message2 != 'undefined') { %>
+        <h2><%= message2 %></h2>
+    <% } %>
+    <table class="table table-hovered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Post#</th>
+                <th scope="col">Seller</th>
+                <th scope="col">Prod Name</th>
+                <th scope="col">Details</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Likes</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% posts.forEach((post, index) => { %>
+                <tr>
+                    <th scope="row"><%= post.postid %></th>
+                    <!-- <td><img src="/assets/img/<%= post.image %>" class="rounded-circle post-img" alt=""></td> -->
+                    <td><%= post.name %></td>
+                    <td><%= post.product_name %></td>
+                    <td><%= post.detail %></td>
+                    <td>$<%= post.price %></td>
+                    <td><%= post.date %></td>
+                    <td><%= post.likes %></td>
+                    <td>
+                        <a href="/see_post/<%= post.postid %>" class="btn btn-sm btn-primary">See More</a>
+                        <a href="/edit/<%= post.postid %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                        <a href="/deletepopup/<%= post.postid %>" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,50 @@
+<%# table view of all users %>
+<% include partials/header.ejs %>
+<div class="container">
+    <% if (typeof message != 'undefined') { %>
+        <h2><%= message %></h2>
+    <% } %>
+    <p><br /></p>
+    <div class="col">
+        <div class="table">
+            <% if (posts.length > 0) {%>
+                <table class="table table-hovered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Post#</th>
+                            <th scope="col">Prod Name</th>
+                            <th scope="col">Detail</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Sold?</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% posts.forEach((post, index) => { %>
+                            <tr>
+                                <th scope="row"><%= post.postid %></th>
+                                <td><%= post.name %></td>
+                                <td><%= post.detail %></td>
+                                <td><%= post.date %></td>
+                                <td>$<%= post.price %></td>
+                                <td><%= post.sold %></td>
+                                <td>
+                                    <a href="/see_post/<%= post.postid %>" class="btn btn-sm btn-primary">See More</a>
+                                    <a href="/edit/<%= post.postid %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                    <a href="/deletepopup/<%=post.postid %>" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p class="text-center">No posts found. Go <a href="/add_post" >here</a> to add posts.</p>
+            <% } %>
+            <div class="align-middle">
+                <a href="/add_post" class="btn btn-sm btn-info">Create New Post</a>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
